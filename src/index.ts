@@ -1,6 +1,10 @@
+export interface Env {
+	WEB_URL: string;
+}
+
 export default {
-	async fetch(request: Request) {
-		const API_URL = 'https://api.openai.com';
+	async fetch(request: Request, env: Env) {
+		const API_URL = `${env.WEB_URL}`;
 
 		const url = new URL(request.url);
 		url.host = API_URL.replace(/^https?:\/\//, '');

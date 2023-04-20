@@ -5,6 +5,7 @@
 	"scripts": {
 		"deploy": "wrangler publish src/index.ts",
 		"dev": "wrangler dev src/index.ts --local",
+		"publish": "HTTP_PROXY=http://localhost:20171 wrangler publish",
 		"start-stackblitz": "WRANGLER_SEND_METRICS=false wrangler dev src/index.ts --local",
 		"test": "vitest"
 	},

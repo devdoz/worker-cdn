@@ -1,9 +1,9 @@
-# openai
+# worker-cdn
 
-openai-proxy
+基于 CloudFlare Workers 的网站加速服务
 
-- https://jihulab.com/devdo/worker-openai
-- https://github.com/devdoz/worker-openai
+- https://jihulab.com/devdo/worker-cdn
+- https://github.com/devdoz/worker-cdn
 
 ## 布署教程
 
@@ -26,10 +26,11 @@ openai-proxy
 4. 拉取本项目：
 
    ```bash
-   git clone https://jihulab.com/devdo/worker-openai.git
+   git clone https://jihulab.com/devdo/worker-cdn.git
    ```
 
-5. 修改 `wrangler.toml` 文件中的 `name`（openai）为服务名 `xxx`（访问域名为：`openai.xxx.workers.dev`）
+5. 修改 `wrangler.toml` 文件中的 `name`（cdn）为服务名 `xxx`（访问域名为：`cdn.xxx.workers.dev`），修改 `WEB_URL` 为需要加速的网站网址。
+   **注：** 后期可以通过 Cloudflare 官网的 Workers 服务设置环境变量。重新推送当前代码时，会将线上的 `WEB_URL` 覆盖。
 
 6. 发布
 
@@ -44,20 +45,15 @@ openai-proxy
    ⛅️ wrangler 2.13.0
    	--------------------
    	Total Upload: 0.66 KiB / gzip: 0.35 KiB
-   	Uploaded openai (1.38 sec)
-   	Published openai (4.55 sec)
-   		https://openai.xxx.workers.dev
+   	Uploaded cdn (1.38 sec)
+   	Published cdn (4.55 sec)
+   		https://cdn.xxx.workers.dev
    	Current Deployment ID:  xxxx.xxxx.xxxx.xxxx
    ```
 
-7. 使用过程中，把官方文档中的 https://api.openai.com 替换成 https://openai.xxx.workers.dev 即可。
-
-   比如：
-   `https://api.openai.com/v1/chat/completions` 修改为 `https://openai.xxx.workers.dev/v1/chat/completions`。
-
    **由于某些原因，`workers.dev` 可能无法正常访问，建议绑定自有域名。**
 
-8. 绑定域名
+7. 绑定域名
 
    在 Cloudflare Workers 的管理界面中，点击 `Triggers` 选项卡，然后点击 `Custom Domians` 中的 `Add Custom Domain` 按钮以绑定域名。
 
